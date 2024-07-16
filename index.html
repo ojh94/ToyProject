@@ -1,13 +1,25 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>토이프로젝트</title>
-  <link rel="stylesheet" href="./css/main.css">
-  <script src="js/main.js" defer></script>
-</head>
-<body>
-  <h1>주제</h1>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <script src="js/cade_game.js"></script>
+        <link rel="stylesheet" href="./css/main.css">
+        <style>
+            table {
+                width: 200px;
+                margin: 30px auto;
+            }
+        </style>
+    </head>
+    <body>
+      <table>
+        <input type="text" id="row">행
+        <input type="text" id="column">열
+        <button id="createimg" onclick="createTable(); return false;">작성</button>
+        <button id="GameStart" onclick="show_card(); return false;">게임 시작</button>
+        <div id="contents"></div>
+    </table>
+    </body>
 </html>

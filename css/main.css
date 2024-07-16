@@ -1,1 +1,19 @@
-/* 주석 */
+#container {
+  width: 200px;
+  margin: 30px auto;
+}
+
+img {
+  width: 100px;
+  height: 100px;
+}
+
+input {
+  width: 40px;
+  text-align: center;
+}
+
+/* td {
+  border: 2px solid;
+  padding:10px;
+} */
