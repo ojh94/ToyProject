@@ -14,7 +14,7 @@ let Level = 0; //게임의 레벨을 체크하는 함수
 let cade_id =Array(); // 카드의 아이디를 보관하는 변수
 let score = 0; // 점수를 보관하는 변수
 let matchedCards = []; 
-let game_time = 60;
+let time = 60; //게임시간은 60초
 
 
 
@@ -216,11 +216,17 @@ function game_restart() {
 }
 
 //타이머
-
-function game_timer(){
-    let time = document.getElementById("timer").innerHTML = `${--game_time}`;
-}
-
-setInterval(() => {
-    displayRemainingTime(targetDate);
-}, 1000);
+const takeTarget = () => {
+    const remainingSec = document.getElementById("game-time");
+    
+    setInterval(function () {
+        if (time > 0) { // >= 0 으로하면 -1까지 출력된다.
+            time = time - 1; // 여기서 빼줘야 3분에서 3분 또 출력되지 않고, 바로 2분 59초로 넘어간다.
+            //let min = Math.floor(time / 60);
+            let sec = String(time % 60).padStart(2, "0");
+            remainingSec.innerText = sec;
+        } else {
+           
+        }
+    }, 1000);
+};

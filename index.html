@@ -29,10 +29,10 @@
             <input type="text" id="row">행
             <input type="text" id="column">열
             <button id="createimg" onclick="createTable(); return false;">작성</button>
-            <button id="GameStart" onclick="show_card(); return false;">게임 시작</button>
+            <button id="GameStart" onclick="takeTarget()">게임 시작</button>
 
             <h2>남은 시간</h2>
-            <div class="timer"></div>
+            <span id="game-time">60</span>
 
             <div id="contents"></div>
         </table>
