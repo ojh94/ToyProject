@@ -7,19 +7,34 @@
         <script src="js/cade_game.js"></script>
         <link rel="stylesheet" href="./css/main.css">
         <style>
-            table {
-                width: 200px;
-                margin: 30px auto;
-            }
+            
         </style>
     </head>
     <body>
-      <table>
-        <input type="text" id="row">행
-        <input type="text" id="column">열
-        <button id="createimg" onclick="createTable(); return false;">작성</button>
-        <button id="GameStart" onclick="show_card(); return false;">게임 시작</button>
-        <div id="contents"></div>
-    </table>
+
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <!-- <span class="close" id="closeBtn">닫기</span> -->
+                <p>게임이 끝났습니다.</p>
+                <p>
+                    다시 시작하시겠습니까?
+                </p>
+                <button id="restart">다시시작</button>
+            </div>
+        </div>
+
+
+
+        <table>
+            <input type="text" id="row">행
+            <input type="text" id="column">열
+            <button id="createimg" onclick="createTable(); return false;">작성</button>
+            <button id="GameStart" onclick="show_card(); return false;">게임 시작</button>
+
+            <h2>남은 시간</h2>
+            <div class="timer"></div>
+
+            <div id="contents"></div>
+        </table>
     </body>
 </html>
