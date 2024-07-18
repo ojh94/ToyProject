@@ -20,8 +20,24 @@ let column = 2; // 열의 갯수
 let sec;
 
 
+
 //이미지를 보관하는 변수
-const cade_images = ['0.png', '1.png','0.png', '1.png','2.png', '3.png','2.png', '3.png','4.png', '5.png','6.png', '7.png','4.png', '5.png','6.png', '7.png'];
+const cade_images = ['0.png', '1.png','0.png', '1.png',
+    '2.png', '3.png','2.png', '3.png',
+    '4.png', '5.png','6.png', '7.png',
+    '4.png', '5.png','6.png', '7.png'];
+
+function setlevel1(){
+    Row = 2;
+    column = 2;
+    createTable();
+}
+function setlevel2(){
+    Row = 4;
+    column = 4;
+    createTable();
+}
+
 
 //카드 덱만들기
 function createTable() {
@@ -42,9 +58,8 @@ function createTable() {
             cade_Image.id = i + 'to' + j;
 
             cade_id.push(cade_Image.id);
-            document.getElementById('createimg').disabled = true;
             
-            // $("#start_manu").hide(); //메뉴를 숨기는 부분
+             $("#start_manu").hide(); //메뉴를 숨기는 부분
             
 
             //카드 클릭 이벤트

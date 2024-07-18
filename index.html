@@ -13,7 +13,6 @@
         <style></style>
     </head>
     <body>
-
         <div id="myModal" class="modal">
             <div class="modal-content">
                 <!-- <span class="close" id="closeBtn">닫기</span> -->
@@ -30,16 +29,14 @@
         </div>
 
         <div id="start_manu">
-            <button id = level1>레벨1</button>
-            <button id = level2>레벨2</button>
-            <button id = level3>레벨3</button>
-            <button id = level4>레벨4</button>
+            <button id = level onclick="setlevel1()">
+                <img src="images/level1.png" alt="" >
+            </button>
+            <button id = level onclick="setlevel2()"><img src="images/level2.png" alt="" ></button>
+            <button id = level onclick="setlevel1()"><img src="images/level3.png" alt="" ></button>
         </div>
 
         <table>
-            <button id="createimg" onclick="createTable(); return false;">작성</button>
-            <button id="GameStart" onclick="takeTarget()">게임 시작</button>
-
             <h2>남은 시간</h2>
             <span id="game-time">60</span>
             <h2>점수</h2>

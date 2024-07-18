@@ -98,3 +98,13 @@ table {
   justify-content: center;
   align-items: center;
 }
+
+#start_manu {
+  text-align: center;
+}
+
+#level {
+  color: white;
+  background-color: white;
+  border: white;
+}
