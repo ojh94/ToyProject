@@ -1,7 +1,7 @@
 window.onload = function () {
-    createTable(); // 테이블을 생성한 후
+    //createTable(); // 테이블을 생성한 후
     
-    show_card(); // 모든 카드를 순차적으로 뒤집기
+    //show_card(); // 모든 카드를 순차적으로 뒤집기
     
 };
 
@@ -15,25 +15,16 @@ let cade_id =Array(); // 카드의 아이디를 보관하는 변수
 let score = 0; // 점수를 보관하는 변수
 let matchedCards = []; 
 let time = 60; //게임시간은 60초
-
-
-
+let Row = 2; // 행의 갯수
+let column = 2; // 열의 갯수
+let sec;
 
 
 //이미지를 보관하는 변수
-const cade_images = ['0.PNG', '1.PNG', '2.PNG', '0.PNG'];
+const cade_images = ['0.png', '1.png','0.png', '1.png','2.png', '3.png','2.png', '3.png','4.png', '5.png','6.png', '7.png','4.png', '5.png','6.png', '7.png'];
 
 //카드 덱만들기
 function createTable() {
-    
-    // 행의 값을 가져오는 변수
-    let Row = document
-        .querySelector("#row")
-        .value;
-    // 열의 값을 가져오는 변수
-    let column = document
-        .querySelector("#column")
-        .value;
     random_number(Number(Row) * Number(column));
     let cade_count = 0;
 
@@ -45,20 +36,20 @@ function createTable() {
         let createRow = document.createElement("tr");
         for (let j = 0; j < column; j++) {
             let createcolumn = document.createElement("td");
-            // 이미지 배정
-            // const chosenImage = cade_images[ran_Number[arr_num++]];
-            // const cade_Image = document.createElement('img');
-            // cade_Image.src = `images/${chosenImage}`;
-            
+            // 이미지 배정 및 아이디 배정            
             const cade_Image = document.createElement('img');
             cade_Image.src = `images/cade_back.png`;
             cade_Image.id = i + 'to' + j;
 
             cade_id.push(cade_Image.id);
             document.getElementById('createimg').disabled = true;
+            
+            // $("#start_manu").hide(); //메뉴를 숨기는 부분
+            
 
             //카드 클릭 이벤트
             cade_Image.addEventListener('click', () => {
+                
                 if (!matchedCards.includes(cade_Image.id)) { // 이미 매칭된 카드인지 확인
                     if(select_cade1_id === cade_Image.id ){}
                     else{
@@ -70,18 +61,19 @@ function createTable() {
                         setTimeout(function() { comparison(select_cade1_id, select_cade2_id); }, 1000);
                     }
                 }
-            }
-            
+            }            
             });
             // ↑↑↑↑↑↑↑↑↑↑↑카드 클릭 이벤트↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
             createcolumn.appendChild(cade_Image);
             createRow.appendChild(createcolumn);
         }
         createtable.appendChild(createRow);
+        
     }
-
     let contents = document.querySelector("#contents");
     contents.appendChild(createtable);
+    takeTarget(); //시간 갱신
+    takescore(); // 점수 갱신
 }
 
 //랜덤한 숫자를 뽑아내는 함수
@@ -166,7 +158,7 @@ function comparison(id1, id2) {
 
     if (comparison_cade1 === comparison_cade2) { // 동일한 카드를 선택했을 경우 실행
         matchedCards.push(id1, id2); // 매칭된 카드의 ID를 배열에 추가
-        score++; //맞을 경우 1점 추가
+        score++; //맞을 경우 1점 추가        
         gameover(score);
     } else {        // 다른 카드를 선택했을 경우에는 뒷면으로 
         closeCard(id1);
@@ -175,6 +167,8 @@ function comparison(id1, id2) {
 
     select_cade1_id = '';
     select_cade2_id = '';
+
+
 }
 
 function show_card() {
@@ -190,20 +184,32 @@ function show_card() {
 }
 
 function gameover(num) {
-    debugger;
     const modal = document.getElementById("myModal");
-    if (num == 1) {
+    if (num == Row || time == 0) {
+        time = 60;
+
         var closeBtn = document.getElementById("closeBtn");
 
         modal
             .classList
             .toggle("show");
+
+            const remainingfinalscore = document.getElementById("final-score"); 
+            remainingfinalscore.innerText = score; // 화면에 점수 표기
+            const remainingfinaltime = document.getElementById("final-time"); 
+            remainingfinaltime.innerText = sec; // 화면에 시간 표기
+            
+
+
         modal.addEventListener('click', function (e) {
             if (e.target === modal || e.target === restart) {
                 modal
                     .classList
                     .remove("show");
                     game_restart();
+                    $("#start_manu").show(); //메뉴를 보이는 부분
+
+                    
             }
         });
     }
@@ -214,19 +220,35 @@ function game_restart() {
     location.reload();
 
 }
-
 //타이머
 const takeTarget = () => {
     const remainingSec = document.getElementById("game-time");
     
     setInterval(function () {
-        if (time > 0) { // >= 0 으로하면 -1까지 출력된다.
-            time = time - 1; // 여기서 빼줘야 3분에서 3분 또 출력되지 않고, 바로 2분 59초로 넘어간다.
+        if (time > 0) { // -1 출력방지
+            time = time - 1; 
             //let min = Math.floor(time / 60);
-            let sec = String(time % 60).padStart(2, "0");
+            sec = String(time % 60).padStart(2, "0");
             remainingSec.innerText = sec;
         } else {
-           
+            gameover(score);
         }
     }, 1000);
+
+    
+};
+
+//화면에 점수를 갱신하는 함수
+const takescore = () => {
+    const remainingscore = document.getElementById("game-score");
+    
+    setInterval(function () {
+        if (score > 0) { // >= 0 으로하면 -1까지 출력된다.
+            remainingscore.innerText = score;
+        } else {
+            
+        }
+    }, 1);
+
+    
 };

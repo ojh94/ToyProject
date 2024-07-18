@@ -6,9 +6,11 @@
         <title>Document</title>
         <script src="js/cade_game.js"></script>
         <link rel="stylesheet" href="./css/main.css">
-        <style>
-            
-        </style>
+        <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+        <style></style>
     </head>
     <body>
 
@@ -16,6 +18,10 @@
             <div class="modal-content">
                 <!-- <span class="close" id="closeBtn">닫기</span> -->
                 <p>게임이 끝났습니다.</p>
+                <span>당신의 점수는 : </span>
+                <span id="final-score"></span>점
+                <span>당신의 남은 시간은 : </span>
+                <span id="final-time"></span>초
                 <p>
                     다시 시작하시겠습니까?
                 </p>
@@ -23,16 +29,21 @@
             </div>
         </div>
 
-
+        <div id="start_manu">
+            <button id = level1>레벨1</button>
+            <button id = level2>레벨2</button>
+            <button id = level3>레벨3</button>
+            <button id = level4>레벨4</button>
+        </div>
 
         <table>
-            <input type="text" id="row">행
-            <input type="text" id="column">열
             <button id="createimg" onclick="createTable(); return false;">작성</button>
             <button id="GameStart" onclick="takeTarget()">게임 시작</button>
 
             <h2>남은 시간</h2>
             <span id="game-time">60</span>
+            <h2>점수</h2>
+            <span id="game-score">0</span>
 
             <div id="contents"></div>
         </table>
