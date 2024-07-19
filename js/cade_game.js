@@ -200,7 +200,7 @@ function show_card() {
 
 function gameover(num) {
     const modal = document.getElementById("myModal");
-    if (num == Row || time == 0) {
+    if (num == ((Row*column)/2) || time == 0) {
         time = 60;
 
         var closeBtn = document.getElementById("closeBtn");

@@ -89,10 +89,7 @@ table {
   cursor: pointer;
 }
 
-.close:hover {
-  color: black;
-}
-
+/* 시작메뉴에 대한 코드 */
 .start_manu{
   display: block;
   justify-content: center;
@@ -103,6 +100,7 @@ table {
   text-align: center;
 }
 
+/* 레벨 버튼배경이 흰색으로 보이게 하는 코드 */
 #level {
   color: white;
   background-color: white;
